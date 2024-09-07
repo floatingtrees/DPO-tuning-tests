@@ -1,3 +1,14 @@
+data/
+venv/
+comparisons/
+comparisons_sd/
+data_sd/
+data2/
+data3/
+data4/
+data*/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
