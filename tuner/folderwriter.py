@@ -6,6 +6,7 @@ import gridfs
 from PIL import Image
 import base64
 from io import BytesIO
+import os
 
 
 
@@ -71,12 +72,24 @@ class DatabaseLoader(Dataset):
         return_tensors="pt",
     )
 
-        inputs = (prompt_inputs, image_inputs)
+        inputs = (images, prompt)
         
         return(inputs, probs)
 
 
 if __name__ == "__main__":
-
-    dataset = DatabaseLoader(1)
-    
+    dataset = DatabaseLoader(0)
+    for i, element in enumerate(dataset):
+        path = f"img_folder/folder{i}"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        x, y = element
+        images, prompt = x
+        images[0].save(f"{path}/im0.jpg")
+        images[1].save(f"{path}/im1.jpg")
+        with open(f"{path}/prompt.txt", "w") as f:
+            f.write(prompt)
+        with open(f"{path}/results.txt", "w") as f:
+            f.write(repr(y))
+        if i == 100:
+            exit()

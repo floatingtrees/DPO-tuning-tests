@@ -7,6 +7,9 @@ data2/
 data3/
 data4/
 data*/
+img_folder/
+
+*.pth
 
 
 # Byte-compiled / optimized / DLL files
